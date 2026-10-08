@@ -108,7 +108,7 @@ jobs:
         helm upgrade --install ${{ inputs.component }} \
         -f values-${{ inputs.environment }}.yaml \
         -n ${{ inputs.project }} \
-        --set deployment.imageversion=${APP_VERSION} \
+        --set deployment.imageversion=${IMAGE_VERSION} \
         .
     - name: Update DEV Deploy status
       if: always()
