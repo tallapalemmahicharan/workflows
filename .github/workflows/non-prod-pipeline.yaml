@@ -90,7 +90,7 @@ jobs:
         id: uat_deploy
         run: |
           helm upgrade --install ${{ inputs.component }} \
-          -f values-${{ inputs.environment }}.yaml \
+          -f values-dev.yaml \
           -n ${{ inputs.project }} \
           --set owner.imageversion=${APP_VERSION} \
           --atomic \
