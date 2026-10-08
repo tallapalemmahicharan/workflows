@@ -89,9 +89,9 @@ jobs:
       - name: deploy to ${{ inputs.environment }} cluster
         id: uat_deploy
         run: |
-          helm upgrade --install ${{ inputs.component }} \
+          helm upgrade --install catalogue \
           -f values-dev.yaml \
-          -n ${{ inputs.project }} \
+          -n roboshop \
           --set owner.imageversion=${APP_VERSION} \
           --atomic \
           --wait \
