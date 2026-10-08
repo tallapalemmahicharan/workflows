@@ -104,9 +104,12 @@ jobs:
 
     - name: deploy to DEV cluster
       id: dev_deploy
-      run:
-        "helm upgrade --install ${{ inputs.component}} -f values-${{ inputs.environment }}.yaml -n ${{ inputs.project }} --set deployment.imageVersion=${APP_VERSION} --atomic --wait --timeout=5m ."
-
+      run: |
+        helm upgrade --install ${{ inputs.component }} \
+        -f values-${{ inputs.environment }}.yaml \
+        -n ${{ inputs.project }} \
+        --set deployment.imageVersion=${APP_VERSION} \
+        .
     - name: Update DEV Deploy status
       if: always()
       uses: tallapalemmahicharan/workflows/.github/actions/update-commit-status@main
