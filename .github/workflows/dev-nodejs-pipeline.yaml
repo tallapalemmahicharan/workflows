@@ -108,8 +108,10 @@ jobs:
         helm upgrade --install ${{ inputs.component }} \
         -f values-${{ inputs.environment }}.yaml \
         -n ${{ inputs.project }} \
-        --set deployment.imageversion=${IMAGE_VERSION} \
-        .
+        --set owner.imageversion=${APP_VERSION} \
+        --atomic \
+        --wait \
+        --timeout=5m .
     - name: Update DEV Deploy status
       if: always()
       uses: tallapalemmahicharan/workflows/.github/actions/update-commit-status@main
